@@ -90,12 +90,8 @@ public class HuffmanCoding {
         while (!source.isEmpty() || target.size() != 1) {
             Queue<TreeNode> queue = new Queue<TreeNode>();
             for (int i = 1; i <= 2; i++) {
-                double p = source.isEmpty() ? 2 : source.peek().getData().getProbOcc(),
-                        q = target.isEmpty() ? 2 : target.peek().getData().getProbOcc();
-                if (Double.compare(p, q) <= 0)
-                    queue.enqueue(source.dequeue());
-                else
-                    queue.enqueue(target.dequeue());
+                double p = source.isEmpty() ? 2 : source.peek().getData().getProbOcc(), q = target.isEmpty() ? 2 : target.peek().getData().getProbOcc();
+                queue.enqueue(Double.compare(p, q) <= 0 ? source.dequeue() : target.dequeue());
             }
             TreeNode l = queue.dequeue(), r = queue.dequeue();
             double s = l.getData().getProbOcc() + r.getData().getProbOcc();
